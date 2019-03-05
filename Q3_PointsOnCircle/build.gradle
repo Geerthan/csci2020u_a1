@@ -1,0 +1,28 @@
+
+plugins {
+    id 'java'
+}
+
+repositories {
+    jcenter()
+}
+
+dependencies {
+
+}
+
+jar {
+    manifest {
+        attributes 'Main-Class': 'csci2020u_a1.Q3_PointsOnCircle.PointsOnCircle',
+        'Implementation-Title': 'PointsOnCircle',
+        'Implementation-Version': 1.0
+    }
+}
+
+task(run, dependsOn: 'classes', type: JavaExec) {
+
+    main = 'csci2020u_a1.Q3_PointsOnCircle.PointsOnCircle'
+
+    classpath = sourceSets.main.runtimeClasspath
+
+}
