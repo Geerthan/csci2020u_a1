@@ -1,0 +1,28 @@
+
+plugins {
+    id 'java'
+}
+
+repositories {
+    jcenter()
+}
+
+dependencies {
+
+}
+
+jar {
+    manifest {
+        attributes 'Main-Class': 'csci2020u_a1.Q4_Histogram.Histogram',
+        'Implementation-Title': 'Histogram',
+        'Implementation-Version': 1.0
+    }
+}
+
+task(run, dependsOn: 'classes', type: JavaExec) {
+
+    main = 'csci2020u_a1.Q4_Histogram.Histogram'
+
+    classpath = sourceSets.main.runtimeClasspath
+
+}
