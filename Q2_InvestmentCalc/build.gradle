@@ -1,28 +1,23 @@
-
 plugins {
-    id 'java'
+	id 'java'
 }
 
 repositories {
-    jcenter()
-}
-
-dependencies {
-
+	jcenter()
 }
 
 jar {
-    manifest {
-        attributes 'Main-Class': 'csci2020u_a1.Q2_InvestmentCalc.InvestmentCalc',
-        'Implementation-Title': 'InvestmentCalc',
-        'Implementation-Version': 1.0
-    }
+	manifest {
+		attributes 'Main-Class': 'csci2020.AssignmentQ2.Main',
+		'Implementation-Title': 'AssignmentQ2',
+		'Implementation-Version': 1.0
+	}
 }
 
 task(run, dependsOn: 'classes', type: JavaExec) {
 
-    main = 'csci2020u_a1.Q2_InvestmentCalc.InvestmentCalc'
+	main = 'csci2020.AssignmentQ2.Main'
 
-    classpath = sourceSets.main.runtimeClasspath
+	classpath = sourceSets.main.runtimeClasspath
 
 }
