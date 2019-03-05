@@ -1,0 +1,28 @@
+
+plugins {
+    id 'java'
+}
+
+repositories {
+    jcenter()
+}
+
+dependencies {
+
+}
+
+jar {
+    manifest {
+        attributes 'Main-Class': 'csci2020u_a1.Q1_CardDisplay.CardDisplay',
+        'Implementation-Title': 'CardDisplay',
+        'Implementation-Version': 1.0
+    }
+}
+
+task(run, dependsOn: 'classes', type: JavaExec) {
+
+    main = 'csci2020u_a1.Q1_CardDisplay.CardDisplay'
+
+    classpath = sourceSets.main.runtimeClasspath
+
+}
