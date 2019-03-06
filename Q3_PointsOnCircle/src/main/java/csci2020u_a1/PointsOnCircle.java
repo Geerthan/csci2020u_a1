@@ -116,6 +116,7 @@ public class PointsOnCircle extends Application {
 		p.getChildren().addAll(mainCirc, ln1, ln2, ln3, lbls[0], lbls[1], lbls[2], crcs[0], crcs[1], crcs[2]);
 		
 		Scene s = new Scene(p);
+		primaryStage.setTitle("Question_3");
 		primaryStage.setScene(s);
 		primaryStage.show();
 		
@@ -139,18 +140,43 @@ public class PointsOnCircle extends Application {
 		if(a2R < 0) a2R = 360 + a2R;
 		if(a3R < 0) a3R = 360 + a3R;
 		
-		lbls[0].setText(String.valueOf(a1 - a3R));
-		lbls[1].setText(String.valueOf(a2 - a1R));
-		lbls[2].setText(String.valueOf(a3 - a2R));
+		double val0 = a1 - a3R;
+		double val1 = a2 - a1R;
+		double val2 = a3 - a2R;
 		
-		lbls[0].layoutXProperty().bind(crcs[0].centerXProperty());
-		lbls[0].layoutYProperty().bind(crcs[0].centerYProperty());
+		if(val0 < 0) val0 = 360 + val0;
+		if(val1 < 0) val1 = 360 + val1;
+		if(val2 < 0) val2 = 360 + val2;
 		
-		lbls[1].layoutXProperty().bind(crcs[1].centerXProperty());
-		lbls[1].layoutYProperty().bind(crcs[1].centerYProperty());
+		String v0Out = String.valueOf(val0);
+		String v1Out = String.valueOf(val1);
+		String v2Out = String.valueOf(val2);
 		
-		lbls[2].layoutXProperty().bind(crcs[2].centerXProperty());
-		lbls[2].layoutYProperty().bind(crcs[2].centerYProperty());
+		v0Out = v0Out.substring(0, Math.min(v0Out.length(), 5));
+		v1Out = v1Out.substring(0, Math.min(v1Out.length(), 5));
+		v2Out = v2Out.substring(0, Math.min(v2Out.length(), 5));
+		
+		lbls[0].setText(v0Out);
+		lbls[1].setText(v1Out);
+		lbls[2].setText(v2Out);
+		
+//		lbls[0].layoutXProperty().bind(crcs[0].centerXProperty().add(((crcs[1].centerXProperty().add(crcs[2].centerXProperty())).subtract(crcs[0].centerXProperty().multiply(2))).multiply(0.07)));
+//		lbls[0].layoutYProperty().bind(crcs[0].centerYProperty().add(((crcs[1].centerYProperty().add(crcs[2].centerYProperty())).subtract(crcs[0].centerYProperty().multiply(2))).multiply(0.07)));
+//		
+//		lbls[1].layoutXProperty().bind(crcs[1].centerXProperty().add(((crcs[0].centerXProperty().add(crcs[2].centerXProperty())).subtract(crcs[1].centerXProperty().multiply(2))).multiply(0.07)));
+//		lbls[1].layoutYProperty().bind(crcs[1].centerYProperty().add(((crcs[0].centerYProperty().add(crcs[2].centerYProperty())).subtract(crcs[1].centerYProperty().multiply(2))).multiply(0.07)));
+//		
+//		lbls[2].layoutXProperty().bind(crcs[2].centerXProperty().add(((crcs[0].centerXProperty().add(crcs[1].centerXProperty())).subtract(crcs[2].centerXProperty().multiply(2))).multiply(0.07)));
+//		lbls[2].layoutYProperty().bind(crcs[2].centerYProperty().add(((crcs[0].centerYProperty().add(crcs[1].centerYProperty())).subtract(crcs[2].centerYProperty().multiply(2))).multiply(0.07)));
+		
+		lbls[0].layoutXProperty().bind(ln1.startXProperty().add(ln1.endXProperty().subtract(ln1.startXProperty()).multiply(0.1)).add(ln3.startXProperty().subtract(ln3.endXProperty()).multiply(0.1)));
+		lbls[0].layoutYProperty().bind(ln1.startYProperty().add(ln1.endYProperty().subtract(ln1.startYProperty()).multiply(0.1)).add(ln3.startYProperty().subtract(ln3.endYProperty()).multiply(0.1)));
+		
+		lbls[1].layoutXProperty().bind(ln2.startXProperty().add(ln2.endXProperty().subtract(ln2.startXProperty()).multiply(0.1)).add(ln1.startXProperty().subtract(ln1.endXProperty()).multiply(0.1)));
+		lbls[1].layoutYProperty().bind(ln2.startYProperty().add(ln2.endYProperty().subtract(ln2.startYProperty()).multiply(0.1)).add(ln1.startYProperty().subtract(ln1.endYProperty()).multiply(0.1)));
+		
+		lbls[2].layoutXProperty().bind(ln3.startXProperty().add(ln3.endXProperty().subtract(ln3.startXProperty()).multiply(0.1)).add(ln2.startXProperty().subtract(ln2.endXProperty()).multiply(0.1)));
+		lbls[2].layoutYProperty().bind(ln3.startYProperty().add(ln3.endYProperty().subtract(ln3.startYProperty()).multiply(0.1)).add(ln2.startYProperty().subtract(ln2.endYProperty()).multiply(0.1)));
 		
 	}
 	
@@ -186,10 +212,10 @@ public class PointsOnCircle extends Application {
 		
 //		System.out.println(minThetaLo + " " + minThetaHi + " " + maxThetaLo + " " + maxThetaHi);
 		
-		if(maxThetaHi > 360) maxThetaHi -= 360;
-		if(minThetaHi > 360) minThetaHi -= 360;
-		if(maxThetaLo < 0) maxThetaLo += 360;
-		if(minThetaLo < 0) minThetaLo += 360;
+//		if(maxThetaHi > 360) maxThetaHi -= 360;
+//		if(minThetaHi > 360) minThetaHi -= 360;
+//		if(maxThetaLo < 0) maxThetaLo += 360;
+//		if(minThetaLo < 0) minThetaLo += 360;
 		
 //		System.out.println("thetas " + minThetaLo + " " + minThetaHi + " " + maxThetaLo + " " + maxThetaHi);
 		
