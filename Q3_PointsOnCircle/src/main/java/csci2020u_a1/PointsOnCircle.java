@@ -9,6 +9,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
+import javafx.scene.shape.Line;
 import javafx.stage.Stage;
 
 public class PointsOnCircle extends Application {
@@ -58,7 +59,25 @@ public class PointsOnCircle extends Application {
 		c3.setStroke(Color.BLACK);
 		c3.setOnMouseDragged(dragHandler);
 		
-		p.getChildren().addAll(mainCirc, c1, c2, c3);
+		Line l1 = new Line();
+		l1.startXProperty().bind(c1.centerXProperty());
+		l1.startYProperty().bind(c1.centerYProperty());
+		l1.endXProperty().bind(c2.centerXProperty());
+		l1.endYProperty().bind(c2.centerYProperty());
+		
+		Line l2 = new Line();
+		l2.startXProperty().bind(c2.centerXProperty());
+		l2.startYProperty().bind(c2.centerYProperty());
+		l2.endXProperty().bind(c3.centerXProperty());
+		l2.endYProperty().bind(c3.centerYProperty());
+		
+		Line l3 = new Line();
+		l3.startXProperty().bind(c3.centerXProperty());
+		l3.startYProperty().bind(c3.centerYProperty());
+		l3.endXProperty().bind(c1.centerXProperty());
+		l3.endYProperty().bind(c1.centerYProperty());
+		
+		p.getChildren().addAll(mainCirc, l1, l2, l3, c1, c2, c3);
 		
 		Scene s = new Scene(p);
 		primaryStage.setScene(s);
