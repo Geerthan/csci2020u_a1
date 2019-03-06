@@ -1,9 +1,14 @@
 
 package csci2020u_a1.Q4_Histogram;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
+
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.geometry.VPos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -43,13 +48,43 @@ public class Histogram extends Application {
 			
 			chartGrid.add(rects[i], i, 0);
 			chartGrid.add(lbls[i], i, 1);
+			
+			GridPane.setValignment(rects[i], VPos.BOTTOM);
 		}
 		
 		Label lblFile = new Label("Filename");
-		TextField txtfdFilename = new TextField();
-		Button btViewGraph = new Button("View");
 		
+		TextField txtfdFilename = new TextField();
 		txtfdFilename.setPrefWidth(270);
+		
+		Button btViewGraph = new Button("View");
+		btViewGraph.setOnAction(e -> {
+			
+			for(int i = 0;i < 26;i++) {
+				rects[i].setHeight(0);
+			}
+			
+			Scanner in;
+			
+			try {
+				in = new Scanner(new File(txtfdFilename.getText()));
+				String str;
+				
+				while(in.hasNext()) {
+					str = in.next();
+					for(int i = 0;i < str.length();i++) {
+						short idx = (short) Character.toUpperCase(str.charAt(i));
+						idx -= 65;
+						if(idx >= 0 && idx < 26) rects[idx].setHeight(rects[idx].getHeight() + 5);
+					}
+				}
+				
+				primaryStage.sizeToScene();
+				
+			} catch (FileNotFoundException e1) {
+				e1.printStackTrace();
+			}
+		});
 		
 		fileHBox.getChildren().addAll(lblFile, txtfdFilename, btViewGraph);
 		
