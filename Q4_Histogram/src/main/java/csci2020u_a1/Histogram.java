@@ -92,6 +92,7 @@ public class Histogram extends Application {
 		
 		Scene s = new Scene(paneVBox);
 		
+		primaryStage.setTitle("Question_4");
 		primaryStage.setScene(s);
 		primaryStage.show();
 		
