@@ -1,0 +1,14 @@
+Creates a PrintWriter for the specified file.
+Writes a string.
+Writes a character.
+Writes an array of character.
+Writes an int value.
+Writes a long value.
+Writes a float value.
+Writes a double value.
+Writes a boolean value.
+A println method acts like a print method; additionally it
+prints a line separator. The line separator string is defined
+by the system. It is \r\n on Windows and \n on Unix.
+The printf method was introduced in §4.6, “Formatting
+Console Output and Strings.

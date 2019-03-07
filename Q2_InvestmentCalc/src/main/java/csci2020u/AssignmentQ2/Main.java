@@ -12,8 +12,6 @@ import javafx.scene.shape.Arc;
 import javafx.scene.shape.ArcType;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-
-
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -26,12 +24,20 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
+/**
+ * This program calculates a return on an investment given an investment amount, years invested, and an investment rate.
+ * @author Gage Adam
+ * @author Geerthan Srikantharajah
+ */
+
 public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) {
+
         primaryStage.setTitle("Question_2");
 
+        //Pane to hold all UI elements
         GridPane pane = new GridPane();
         pane.setPadding(new Insets(10, 10, 10, 10));
         TextField invest, years, rate, result;
@@ -56,14 +62,15 @@ public class Main extends Application {
         pane.add(result, 1, 3);
         Button calculate = new Button("Calculate");
 
+        //Calculate future value from given values on button press
         calculate.setOnAction(new EventHandler<ActionEvent>() {
             
           public void handle(ActionEvent event) {
             double inv = Double.valueOf(invest.getText());
             double year = Double.valueOf(years.getText());
-            double r = Double.valueOf(rate.getText()) / 100 / 12;
+            double r = Double.valueOf(rate.getText()) / 100 / 12; //Convert to monthly rate, and then to decimal (from percent)
             String future;
-            future = String.valueOf(inv * Math.pow((1 + r), year*12));
+            future = String.valueOf(inv * Math.pow((1 + r), year*12)); //Future value calculation
             result.setText(future);
           }
           
